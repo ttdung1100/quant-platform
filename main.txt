@@ -1,0 +1,37 @@
+| Module              | Chức năng             |
+| ------------------- | --------------------- |
+| data_engine         | đọc dữ liệu AmiBroker |
+| factor_model        | momentum / factor     |
+| portfolio_optimizer | efficient frontier    |
+| risk_engine         | volatility / drawdown |
+| ai_prediction       | ML stock prediction   |
+| backtesting         | test chiến lược       |
+| paper_reader        | đọc paper             |
+
+
+
+
+quant_platform
+│
+├── app.py
+├── requirements.txt
+│
+├── data
+│   └── amibroker_all_data.txt
+│
+├── pages
+│   ├── 1_Home.py
+│   ├── 2_Stock_Analysis.py
+│   ├── 3_Portfolio.py
+│   ├── 4_Risk_Model.py
+│   ├── 5_Option_Pricing.py
+│   └── 6_AI_Research.py
+│
+└── quantlib
+    ├── data_engine.py
+    ├── factor_model.py
+    ├── portfolio_optimizer.py
+    ├── risk_engine.py
+    ├── ai_prediction.py
+    ├── backtesting.py
+    └── paper_reader.py
