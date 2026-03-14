@@ -1,16 +1,39 @@
-import gdown
 import os
+import gdown
+import pandas as pd
+import streamlit as st
 
+FILE_ID = "1H8btGV5afUQirVrnqTS3RgPSZudxyL6n"
+DATA_PATH = "data/amibroker_all_data.txt"
+
+
+@st.cache_data
 def load_data():
 
     os.makedirs("data", exist_ok=True)
 
-    file_path = "data/stock_data.txt"
+    if not os.path.exists(DATA_PATH):
 
-    if not os.path.exists(file_path):
+        url = f"https://drive.google.com/uc?id={FILE_ID}"
 
-        url = "https://drive.google.com/uc?id=1H8btGV5afUQirVrnqTS3RgPSZudxyL6n"
+        gdown.download(url, DATA_PATH, quiet=False)
 
-        gdown.download(url, file_path, quiet=False)
+    df = pd.read_csv(
+        DATA_PATH,
+        sep=",",
+        header=None
+    )
 
-    return file_path
+    df.columns = [
+        "ticker",
+        "date",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+    ]
+
+    df["date"] = pd.to_datetime(df["date"])
+
+    return df
